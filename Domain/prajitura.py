@@ -9,6 +9,8 @@ def create_prajitura(id, nume, descriere, pret, nr_calorii, an_introducere_meniu
     :param an_introducere_meniu: int
     :return: Dict
     '''
+    # return [id, nume, descriere, pret, nr_calorii, an_introducere_meniu]
+
     return {
         "id": id,
         "nume": nume,
@@ -24,7 +26,17 @@ def get_id(prajitura):
     :param prajitura: Dict
     :return: id - string
     '''
+    # return prajitura[0]
     return prajitura['id']
+
+def set_id(prajitura, id):
+    '''
+    Setarea id la prajitura
+    :param prajitura: Dict
+    :param id: string
+    :return:
+    '''
+    prajitura['id'] = id
 
 def get_nume(prajitura):
     '''
@@ -34,6 +46,15 @@ def get_nume(prajitura):
     '''
     return prajitura['nume']
 
+def set_nume(prajitura, nume):
+    '''
+    Setarea nume la prajitura
+    :param prajitura: Dict
+    :param nume: string
+    :return:
+    '''
+    prajitura['nume'] = nume
+
 def get_descriere(prajitura):
     '''
 
@@ -42,6 +63,15 @@ def get_descriere(prajitura):
     '''
     return prajitura['descriere']
 
+def set_descriere(prajitura, descriere):
+    '''
+    Setarea descriere la prajitura
+    :param prajitura: Dict
+    :param descriere: string
+    :return:
+    '''
+    prajitura['descriere'] = descriere
+
 def get_pret(prajitura):
     '''
 
@@ -49,6 +79,15 @@ def get_pret(prajitura):
     :return: pret - float
     '''
     return prajitura['pret']
+
+def set_pret(prajitura, pret):
+    '''
+    Setarea pret la prajitura
+    :param prajitura: Dict
+    :param pret: float
+    :return:
+    '''
+    prajitura['pret'] = pret
 
 def get_nr_calorii(prajitura):
     '''
@@ -74,6 +113,15 @@ def get_an_introducere(prajitura):
     :return: an_introducere - int
     '''
     return prajitura['an_introducere_meniu']
+
+def set_an_introducere(prajitura, an_introducere):
+    '''
+    Setarea an_introducere la prajitura
+    :param prajitura: Dict
+    :param an_introducere: int
+    :return:
+    '''
+    prajitura['an_introducere_meniu'] = an_introducere
 
 def to_str(prajitura):
     return f'ID={get_id(prajitura)}, nume={get_nume(prajitura)}, descriere={get_descriere(prajitura)}'\

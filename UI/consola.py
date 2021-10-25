@@ -1,5 +1,5 @@
 from Domain.prajitura import to_str
-from Logic.crud import add_prajitura
+from Logic.crud import add_prajitura, edit_prajitura
 from Logic.operatiuni import reducere_calorii
 
 def print_meniu():
@@ -49,6 +49,28 @@ def run_crud_ui(prajituri):
         for prajitura in prajituri:
             print(to_str(prajitura))
 
+    def handle_edit_prajitura_ui(prajituri):
+        '''
+        Adaugam o prajitura citita de la tastatura in lista de prajituri
+        :param prajituri: lista de prajituri
+        :return:
+        '''
+        id = input('Dati idul prajiturii pe care vreti sa o editati')
+        nume = input('Dati numele')
+        descriere = input('Dati descrierea')
+        pret = input('Dati pretul')
+        nr_calorii = input('Dati numarul de calorii')
+        an_introducere = input('Dati anul introducerii in meniu')
+        try:
+            prajituri = edit_prajitura(prajituri, id, nume, descriere, pret, nr_calorii, an_introducere)
+            print('Prajitura a fost modificata cu succes')
+            return prajituri
+        except ValueError as ve:
+            print("!!! Au aparut erori")
+            print(ve)
+        except:
+            print('Unknown error')
+
     def handle_add_prajitura_ui(prajituri):
         '''
         Adaugam o prajitura citita de la tastatura in lista de prajituri
@@ -58,17 +80,27 @@ def run_crud_ui(prajituri):
         id = input('Dati idul prajiturii')
         nume = input('Dati numele')
         descriere = input('Dati descrierea')
-        pret = float(input('Dati pretul'))
-        nr_calorii = int(input('Dati numarul de calorii'))
-        an_introducere = int(input('Dati anul introducerii in meniu'))
-        add_prajitura(prajituri, id, nume, descriere, pret, nr_calorii, an_introducere)
-        print('Prajitura a fost adaugata cu succes')
+        pret = input('Dati pretul')
+        nr_calorii = input('Dati numarul de calorii')
+        an_introducere = input('Dati anul introducerii in meniu')
+        try:
+            prajituri = add_prajitura(prajituri, id, nume, descriere, pret, nr_calorii, an_introducere)
+            print('Prajitura a fost adaugata cu succes')
+            return prajituri
+        except ValueError as ve:
+            print("!!! Au aparut erori")
+            print(ve)
+        except:
+            print('Unknown error')
+        finally:
+            pass
+            # codul de aici se executa si daca a fost functia executata cu succes si si daca au aparut erori
 
     while True:
         print_crud_meniu()
         cmd = input("Comanda: ")
         if cmd == '1':
-            handle_add_prajitura_ui(prajituri)
+            prajituri = handle_add_prajitura_ui(prajituri)
         elif cmd == '4':
             handle_show_all(prajituri)
         elif cmd == '5':
@@ -93,14 +125,14 @@ def run_operatiuni_ui(prajituri):
         '''
         reducere = int(input("Dati reducerea de calorii"))
         string_cautare = input("Dati stringul de cautare")
-        reducere_calorii(prajituri, string_cautare, reducere)
-
+        prajituri = reducere_calorii(prajituri, string_cautare, reducere)
+        return prajituri
 
     while True:
         print_operatiuni_meniu()
         cmd = input("Comanda: ")
         if cmd == '1':
-            handle_reducere_calorii(prajituri)
+            prajituri = handle_reducere_calorii(prajituri)
         elif cmd == '6':
             break
         else:

@@ -1,0 +1,1 @@
+from Tests.run_all_tests import run_all_tests

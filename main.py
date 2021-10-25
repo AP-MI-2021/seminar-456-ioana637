@@ -1,5 +1,5 @@
-from UI.consola import run_console
-from Tests.run_all_tests import run_all_tests
+from UI import run_console
+from Tests import run_all_tests
 
 def main():
     prajituri = []
